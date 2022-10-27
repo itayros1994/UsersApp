@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Details from './pages/Details';
+import Navbar from './pages/Navbar';
+import Home from './pages/Home';
+import Footer from './cmps/Footer';
+import './style/style.scss';
+import Favorites from './pages/Favorites';
+import { useState } from 'react';
 
-function App() {
+export default function App() {
+  const [favorites, setFavorites] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<Home favorites={favorites} setFavorites={setFavorites} />} />
+              <Route path="/favorites" element={<Favorites/>} />
+            <Route path="/details/:name" element={<Details/>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      {/* <Footer /> */}
     </div>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
