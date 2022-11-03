@@ -3,6 +3,7 @@ const initialState = {
   users: [],
   modalOpen: false,
   userEdit: null,
+  snackBarOpen: false,
 };
 
 export function usersReducer(state = initialState, action) {
@@ -35,6 +36,12 @@ export function usersReducer(state = initialState, action) {
       return {
         ...state,
         modalOpen: action.isOpen,
+      };
+
+    case 'SET_SNACKBAR':
+      return {
+        ...state,
+        snackBarOpen: action.isOpen,
       };
 
     case 'SET_USER_EDIT':

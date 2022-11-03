@@ -23,7 +23,7 @@ export function UserPreview({ user }) {
 
   return (
     <div>
-      <Card sx={{ maxWidth: 300, minWidth:300, minHeight: 400, maxHeight:400, justifyContent: 'space-between',  margin: 2 }}>
+      <Card className='user-card' sx={{ maxWidth: 300, minWidth:300, minHeight: 400, maxHeight:400, justifyContent: 'space-between',  margin: 2 }}>
         <CardMedia component="img" alt="green iguana" height="140" image={user.picture.medium} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

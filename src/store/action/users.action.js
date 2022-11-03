@@ -79,3 +79,14 @@ export function onSetFilterBy(filterBy) {
   };
 }
 
+export function onSetSnackBar(isOpen) {
+  return (dispatch) => {
+    const action = {
+      type: 'SET_SNACKBAR',
+      isOpen,
+    };
+    
+    dispatch(action);
+  };
+}
+

@@ -4,6 +4,7 @@
 @import url('.././/cmps/UserForm/userForm.scss');
 @import url('.././/cmps/UserList/userList.scss');
 @import url('.././/cmps/UserPreview/userPreview.scss');
+@import url('.././/cmps/Footer/footer.scss');
 
 form {
   display: flex;
@@ -13,12 +14,6 @@ form {
   justify-content: center;
 }
 
-.add-user-form {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 30%;
-}
 
 .button-mui-form {
   margin-left: 5px !important;
@@ -26,18 +21,12 @@ form {
 }
 
 .mui-button {
-  width: 100% !important;
-}
-
-.user-from-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 50% !important;
 }
 
 .text-field {
   margin: 5px !important;
+  width: 50%;
 }
 
 .main-app-container {
@@ -45,11 +34,6 @@ form {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-
-a {
-  text-decoration: none;
-  color: black;
 }
 
 .block {
@@ -66,18 +50,13 @@ a {
 }
 
 @media screen and (min-width: 375px) {
-  .user-from-container {
+
+  .user-form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: white;
-  }
-
-
-  .add-user-form {
-    width: 40%;
-    margin-bottom: 30px;
-  }
+  } 
 
   .button-mui {
     // margin-left: 5px !important;

@@ -1,19 +1,18 @@
 import { TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { onSetNewUser, onSetUpdateUser, onSetModalOpen } from '../../store/action/users.action';
+import { onSetNewUser, onSetUpdateUser, onSetModalOpen, onSetUserToEdit, onSetSnackBar } from '../../store/action/users.action';
 import { userService } from '../../service/service';
 import Button from '@mui/material/Button';
+import { SnackBar } from '../SnackBar/SnackBar';
 
 export function UserForm() {
   const dispatch = useDispatch();
-  const { userEdit, modalOpen } = useSelector((state) => state.usersModule);
+  const { userEdit, modalOpen, users } = useSelector((state) => state.usersModule);
+  const [open, setOpen] = useState(false);
+  const [snackMessege, setSnackMessege] = useState(false);
 
-  useEffect(() => {
-    if (userEdit !== null) updateUserInput(userEdit);
-  }, [userEdit]);
-
-  let [userInput, updateUserInput] = useState({
+  const defaultUserInput = {
     name: {
       first: '',
       last: '',
@@ -27,9 +26,15 @@ export function UserForm() {
       uuid: userService.makeId(30),
     },
     picture: {
-      medium: 'https://randomuser.me/api/portraits/med/men/93.jpg',
+      medium: `https://randomuser.me/api/portraits/med/men/${userService.makeId(1)}.jpg`,
     },
-  });
+  };
+
+  useEffect(() => {
+    if (userEdit !== null) updateUserInput(userEdit);
+  }, [userEdit]);
+
+  let [userInput, updateUserInput] = useState({ ...defaultUserInput });
 
   function userFirstNameHandler(event) {
     const name = { ...userInput.name, first: event.target.value };
@@ -53,48 +58,26 @@ export function UserForm() {
     });
   }
 
-  function setNewId() {
-    const login = { ...userInput.login, uuid: userService.makeId(30) };
-    updateUserInput({ ...userInput, login });
-  }
-
-  function setNewPicture() {
-    const picture = { ...userInput.picture, medium: `https://randomuser.me/api/portraits/med/men/${userService.makeId(2)}.jpg` };
-    console.log('picture', picture);
-    updateUserInput({ ...userInput, picture});
-  }
-
   function cleanForm() {
-    updateUserInput({
-      name: {
-        first: '',
-        last: '',
-      },
-      location: {
-        street: {},
-        country: '',
-      },
-      email: '',
-      login: {
-        uuid: '',
-      },
-      picture: {
-        medium: 'https://randomuser.me/api/portraits/med/men/93.jpg',
-      },
-    });
+    updateUserInput({ ...defaultUserInput });
+    dispatch(onSetUserToEdit(null));
   }
 
   const addNewUser = (event) => {
     event.preventDefault();
 
+    // Switching between Add / Edit
     if (userEdit !== null) {
       dispatch(onSetUpdateUser(userInput));
       dispatch(onSetModalOpen(false));
       cleanForm();
     } else {
+      if (users.findIndex((user) => user.email === userInput.email) !== -1) {
+        dispatch(onSetSnackBar(true));
+        return;
+      }
       if (userInput.name.first.length < 4 || userInput.name.last < 4) return console.log('not valid');
-      setNewPicture();
-      setNewId();
+      userInput.login.uuid = userService.makeId(30);
       dispatch(onSetNewUser(userInput));
       dispatch(onSetModalOpen(false));
       cleanForm();
@@ -102,18 +85,32 @@ export function UserForm() {
   };
 
   return (
-    <div className={modalOpen ? 'block' : 'none'}>
-      <div className="user-from-container">
-        <form className='add-user-form' onSubmit={addNewUser}>
-          <h2 className='new-user-header'>New User</h2>
-          <TextField value={userInput.name.first} type="text" onChange={userFirstNameHandler} label="First Name" className="text-field"></TextField>
-          <TextField value={userInput.name.last} type="text" onChange={userLastNameHandler} label="Last Name" className="text-field"></TextField>
-          <TextField value={userInput.location.country} type="text" onChange={userAdressHandler} label="Country" className="text-field"></TextField>
-          <TextField value={userInput.email} type="email" onChange={userEmailHandler} label="Email" className="text-field"></TextField>
-          <Button className="mui-button" type="submit" variant="contained">
-            SUBMIT
-          </Button>
-        </form>
+    <div className="button-container">
+      <SnackBar snackMessege={snackMessege} open={open} />
+      <Button
+        sx={{ minWidth: 300 }}
+        className="button-mui"
+        variant="contained"
+        onClick={() => {
+          dispatch(onSetModalOpen(!modalOpen));
+          cleanForm();
+        }}
+      >
+        {modalOpen ? 'Close Form' : 'Add New User'}
+      </Button>
+      <div className={modalOpen ? 'block' : 'none'}>
+        <div className="user-from-container">
+          <form className="add-user-form" onSubmit={addNewUser}>
+            <h2>{userEdit !== null ? 'Update User' : 'New User'}</h2>
+            <TextField value={userInput.name.first} type="text" onChange={userFirstNameHandler} label="First Name" className="text-field"></TextField>
+            <TextField value={userInput.name.last} type="text" onChange={userLastNameHandler} label="Last Name" className="text-field"></TextField>
+            <TextField value={userInput.location.country} type="text" onChange={userAdressHandler} label="Country" className="text-field"></TextField>
+            <TextField value={userInput.email} type="email" onChange={userEmailHandler} label="Email" className="text-field"></TextField>
+            <Button className="mui-button" type="submit" variant="contained">
+              SUBMIT
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );

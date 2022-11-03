@@ -3,6 +3,7 @@ import { Navbar } from './cmps/Navbar/Navbar';
 import { UsersApp } from './pages/UsersApp';
 import './style/style.scss';
 import { useState } from 'react';
+import { Footer } from './cmps/Footer/Footer';
 
 export default function App() {
   const [favorites, setFavorites] = useState([]);
@@ -11,6 +12,7 @@ export default function App() {
     <div>
       <Navbar />
       <UsersApp favorites={favorites} setFavorites={setFavorites} />
+      <Footer/>
     </div>
   );
 }

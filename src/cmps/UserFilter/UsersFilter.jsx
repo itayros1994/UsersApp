@@ -18,7 +18,6 @@ export function UsersFilter() {
 
   function handleName(event) {
     setFilterName(event.target.value);
-    console.log(filterName);
   }
 
   function handleLocation(event) {
@@ -44,11 +43,12 @@ export function UsersFilter() {
 
   return (
     <div className="filter-form-container">
+        <h3>Search By</h3> 
       <form>
-        <TextField className='text-field' onChange={handleName} label="Filter By Name"></TextField>
-        <TextField className='text-field' onChange={handleLocation} label="Filter By Location"></TextField>
-        <TextField className='text-field' onChange={handleId} label="Filter By Id"></TextField>
-        <TextField className='text-field' onChange={handleEmail} label="Filter By Email"></TextField>
+        <TextField variant='standard' className='text-field' onChange={handleName} label="Name"></TextField>
+        <TextField variant='standard' className='text-field' onChange={handleLocation} label="Location"></TextField>
+        <TextField variant='standard' className='text-field' onChange={handleId} label="Id"></TextField>
+        <TextField variant='standard' className='text-field' onChange={handleEmail} label="Email"></TextField>
       </form>
     </div>
   );
