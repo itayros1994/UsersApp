@@ -1,23 +1,19 @@
 import axios from 'axios';
 
-export const PokemonService = {
-  getPokemons,
-  getPokemonsImg,
-  getPokemonBy,
+export const userService = {
+  getUsers,
+  makeId
 };
 
-function getPokemons(page, filterBy) {
-  if (filterBy === '') {
-    return axios.get(`https://pokeapi.co/api/v2/item/?offset=${page}&limit=20`).then((res) => res.data);
-  } else {
-    return axios.get(`https://pokeapi.co/api/v2/item/?offset=${page}&limit=20`).then((res) => res.data.results.filter((pokemon) => pokemon.name.includes(filterBy)));
+function getUsers() {
+    return axios.get(`https://randomuser.me/api/?results=10`).then((res) => res.data);
+}
+
+function makeId(length) {
+let id = ''
+  for(let i =0 ; i < length ; i++) {
+    id += Math.floor(Math.random() * 10);
   }
+  return id
 }
-
-function getPokemonsImg(pokemonUrl) {
-  return axios.get(`${pokemonUrl}`).then((res) => res.data);
-}
-
-function getPokemonBy(params) {
-  return axios.get(`https://pokeapi.co/api/v2/item/${params}`).then((res) => res.data);
-}
+  

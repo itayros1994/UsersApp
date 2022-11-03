@@ -1,0 +1,27 @@
+.logo {
+    margin-left: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .nav-bar {
+    background-color: #004989;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    margin-bottom: 40px;
+  }
+
+  .nav-container {
+    display: flex;
+  }
+
+  .nav-item {
+    margin: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 27px;
+    color: black;
+  }
