@@ -102,13 +102,18 @@ export function UserForm() {
         <div className="user-from-container">
           <form className="add-user-form" onSubmit={addNewUser}>
             <h2>{userEdit !== null ? 'Update User' : 'New User'}</h2>
-            <TextField value={userInput.name.first} type="text" onChange={userFirstNameHandler} label="First Name" className="text-field"></TextField>
-            <TextField value={userInput.name.last} type="text" onChange={userLastNameHandler} label="Last Name" className="text-field"></TextField>
-            <TextField value={userInput.location.country} type="text" onChange={userAdressHandler} label="Country" className="text-field"></TextField>
-            <TextField value={userInput.email} type="email" onChange={userEmailHandler} label="Email" className="text-field"></TextField>
+            <TextField value={userInput.name.first} type="text" onChange={userFirstNameHandler} label="First Name" className="text-field-form"></TextField>
+            <TextField value={userInput.name.last} type="text" onChange={userLastNameHandler} label="Last Name" className="text-field-form"></TextField>
+            <TextField value={userInput.location.country} type="text" onChange={userAdressHandler} label="Country" className="text-field-form"></TextField>
+            <TextField value={userInput.email} type="email" onChange={userEmailHandler} label="Email" className="text-field-form"></TextField>
+            <div className='confirm-btns-container'>
             <Button className="mui-button" type="submit" variant="contained">
               SUBMIT
             </Button>
+            <Button onClick={() => dispatch(onSetModalOpen(false))} className="mui-button" type="submit" variant="contained">
+              CANCEL
+            </Button>
+            </div>
           </form>
         </div>
       </div>
