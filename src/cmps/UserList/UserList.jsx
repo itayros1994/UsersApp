@@ -15,7 +15,7 @@ export function UserList() {
     <div className="center">
       <div className="top-container">
         <UsersFilter />
-        <Button className="button-mui" variant="contained" onClick={() => dispatch(onSetModalOpen(!modalOpen))}>
+        <Button sx={{ minWidth: 300 }} className="button-mui" variant="contained" onClick={() => dispatch(onSetModalOpen(!modalOpen))}>
           {modalOpen ? 'Close Form' : 'Add New User'}
         </Button>
         <UserForm />

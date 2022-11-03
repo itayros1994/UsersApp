@@ -6,7 +6,6 @@
 @import url('.././/cmps/UserPreview/userPreview.scss');
 
 form {
-
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -19,7 +18,6 @@ form {
   flex-direction: column;
   flex-wrap: wrap;
   width: 30%;
-
 }
 
 .button-mui-form {
@@ -67,7 +65,7 @@ a {
   width: 30% !important;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 375px) {
   .user-from-container {
     display: flex;
     flex-direction: column;
@@ -75,12 +73,9 @@ a {
     background-color: white;
   }
 
-  .form {
-    width: 300px !important;
-  }
 
   .add-user-form {
-    width: 100%;
+    width: 40%;
     margin-bottom: 30px;
   }
 

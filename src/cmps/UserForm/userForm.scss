@@ -12,3 +12,29 @@
   justify-content: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+@media screen and (min-width: 375px) {
+  .new-user-header {
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .add-user-form {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+
+  .mui-button {
+    margin-top: 15px !important;
+  }
+
+  .form {
+    width: 300px !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+}

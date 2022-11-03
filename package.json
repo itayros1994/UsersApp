@@ -1,5 +1,5 @@
 {
-  "homepage": "https://itayros1994.github.io/userLibary/",
+  "homepage": "https://itayros1994.github.io/UsersApp/",
   "name": "template-app-itay",
   "version": "0.1.0",
   "private": true,
@@ -23,7 +23,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy":"npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "react-router-dom": "^6.4.2"
   }
 }
