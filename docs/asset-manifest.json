@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/userLibary/static/css/main.18604e8f.css",
+    "main.js": "/userLibary/static/js/main.7c4c948e.js",
+    "index.html": "/userLibary/index.html",
+    "main.18604e8f.css.map": "/userLibary/static/css/main.18604e8f.css.map",
+    "main.7c4c948e.js.map": "/userLibary/static/js/main.7c4c948e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18604e8f.css",
+    "static/js/main.7c4c948e.js"
+  ]
+}
